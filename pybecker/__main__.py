@@ -9,10 +9,11 @@ async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--channel', required=True, help='channel')
     parser.add_argument('-a', '--action', required=True, help='Command to execute (UP, DOWN, HALT, PAIR)')
-    parser.add_argument('-d', '--device', required=False, help='Device to use for connectivity')
+    parser.add_argument('-d', '--device', required=False,
+                        default=pybecker.becker.DEFAULT_DEVICE_NAME, help='Device to use for connectivity')
     args = parser.parse_args()
 
-    client = Becker()
+    client = Becker(args.device)
 
     if args.action == "UP":
         await client.move_up(args.channel)

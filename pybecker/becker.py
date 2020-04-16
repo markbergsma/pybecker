@@ -18,7 +18,9 @@ COMMAND_PAIR2 = 0x81  # pair button pressed for 3 seconds (without releasing)
 COMMAND_PAIR3 = 0x82  # pair button pressed for 6 seconds (without releasing)
 COMMAND_PAIR4 = 0x83  # pair button pressed for 10 seconds (without releasing)
 
-DEFAULT_DEVICE_NAME = '/dev/serial/by-id/usb-BECKER-ANTRIEBE_GmbH_CDC_RS232_v125_Centronic-if00'
+# FIXME
+#DEFAULT_DEVICE_NAME = '/dev/serial/by-id/usb-BECKER-ANTRIEBE_GmbH_CDC_RS232_v125_Centronic-if00'
+DEFAULT_DEVICE_NAME = '192.168.20.131:5000'
 
 logging.basicConfig()
 _LOGGER = logging.getLogger(__name__)

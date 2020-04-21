@@ -83,10 +83,13 @@ class Becker:
 
         try:
             return self.s.sendall(*args, **kwargs)
-        except OSError:
-            # Assume the connection failed, and connect again
-            self._connect()
-            return self.s.sendall(*args, **kwargs)
+        except OSError as err:
+            if err.errno == 32:
+                # The connection failed, and connect again
+                self._connect()
+                return self.s.sendall(*args, **kwargs)
+            else:
+                raise
 
     async def write(self, codes):
         for code in codes:

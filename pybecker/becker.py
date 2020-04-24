@@ -86,6 +86,7 @@ class Becker:
         except OSError as err:
             if err.errno == 32:
                 # The connection failed, and connect again
+                _LOGGER.debug("Connection was lost, attempting reconnect")
                 self._connect()
                 return self.s.sendall(*args, **kwargs)
             else:

@@ -37,6 +37,9 @@ def generate_code(channel, unit, cmd_code, with_checksum=True):
     unit_id = unit[0]  # contains the unit code in hex (5 chars)
     unit_inc = unit[1]  # contains the next increment (required to convert into hex4)
 
+    _LOGGER.debug("Generating code with channel %s, unit id %s, unit inc %s, cmd code %s",
+        channel, unit_id, unit_inc, cmd_code)
+
     code = CODE_PREFIX + hex4(unit_inc) + CODE_SUFFIX + unit_id + CODE_21 + CODE_REMOTE + hex2(channel) + '00' \
         + hex2(cmd_code)
     return checksum(code) if with_checksum else code
